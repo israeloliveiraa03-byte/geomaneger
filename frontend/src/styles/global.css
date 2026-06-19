@@ -1,0 +1,473 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap");
+
+:root {
+  --bg: #F4F1EA;
+  --surface: #FFFFFF;
+  --ink: #1F2A24;
+  --ink-soft: #5B6660;
+  --accent: #0F6E56;
+  --border: #DEDACE;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 18px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+}
+
+.brand {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+}
+
+.toolbar button {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.toolbar button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.header-stats {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.measurement { color: var(--accent); }
+
+.app-body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.layer-panel {
+  width: 280px;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.layer-panel h2 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+}
+
+.empty-hint {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.layer-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.layer-panel li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.layer-panel li.active {
+  background: #EAF3DE;
+}
+
+.layer-panel li:hover {
+  background: var(--bg);
+}
+
+.color-swatch {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.layer-name {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--ink);
+  min-width: 0;
+}
+
+.layer-name:focus { outline: none; }
+
+.feature-count {
+  font-size: 11px;
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--ink-soft);
+}
+
+.layer-panel button {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.layer-panel button:hover { color: var(--accent); }
+.layer-panel button:disabled { opacity: 0.3; cursor: default; }
+
+.map-area {
+  position: relative;
+  flex: 1;
+}
+
+.attribute-panel {
+  width: 280px;
+  border-left: 1px solid var(--border);
+  background: var(--surface);
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.attribute-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.attribute-panel-header h2 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.attribute-panel-header button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.attribute-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.attribute-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.attribute-key {
+  width: 90px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attribute-row input {
+  flex: 1;
+  font-size: 13px;
+  font-family: inherit;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.attribute-row button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--ink-soft);
+  font-size: 11px;
+}
+
+.attribute-add {
+  display: flex;
+  gap: 6px;
+}
+
+.attribute-add input {
+  flex: 1;
+  font-size: 13px;
+  font-family: inherit;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.attribute-add button {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.attribute-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.attribute-actions button {
+  font-size: 13px;
+  padding: 9px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  background: var(--surface);
+}
+
+.attribute-actions .primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.attribute-actions .danger {
+  color: #A32D2D;
+  border-color: #F0997B;
+}
+
+.account-area button,
+.maps-bar button {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.account-area button:hover,
+.maps-bar button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.maps-bar {
+  position: relative;
+  display: flex;
+  gap: 8px;
+}
+
+.maps-dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 220px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  z-index: 1100;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.maps-dropdown-item {
+  padding: 6px 8px;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.maps-dropdown-item:hover,
+.maps-dropdown-item.active {
+  background: var(--bg);
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(31, 42, 36, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-card {
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 28px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-card h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.modal-card input {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.modal-card button[type="submit"] {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form-error {
+  color: #993C1D;
+  font-size: 13px;
+  margin: 0;
+}
+
+.switch-mode {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.switch-mode a {
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.plans-card {
+  width: 640px;
+  max-width: 90vw;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.plan-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.plan-card.current {
+  border-color: var(--accent);
+}
+
+.plan-card h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.plan-price {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 16px;
+  margin: 0;
+  color: var(--accent);
+}
+
+.plan-detail {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.plan-card button {
+  margin-top: auto;
+  font-family: inherit;
+  font-size: 13px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.plan-card button:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.plan-card button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
