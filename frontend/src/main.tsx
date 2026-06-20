@@ -1,3 +1,8 @@
+import { Buffer } from "buffer";
+// shpjs (leitor de Shapefile) espera encontrar Buffer global, igual no Node.js —
+// isso não existe no navegador por padrão, então fornecemos manualmente.
+(window as any).Buffer = Buffer;
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
